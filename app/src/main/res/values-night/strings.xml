@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">FirstLesson</string>
     <string name="text_button_ce">CE</string>
     <string name="text_button_c">C</string>
     <string name="text_button_divide">÷</string>
