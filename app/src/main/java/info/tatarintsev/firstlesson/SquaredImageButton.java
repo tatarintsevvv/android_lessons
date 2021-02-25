@@ -29,11 +29,8 @@ public class SquaredImageButton extends AppCompatImageButton {
         final int height = getMeasuredHeight(); // высота
         final int width = getMeasuredWidth(); // ширина
 
-// теперь задаем новый размер
-// ширину оставляем такую же как у стандартной кнопки
-// высоту выбираем как максимум между стандартной высотой и шириной
-
-        setMeasuredDimension(width, Math.max(width, height));
+        // теперь задаем новый размер
+        setMeasuredDimension(Math.max(width, height), Math.max(width, height));
 
     }
 }
