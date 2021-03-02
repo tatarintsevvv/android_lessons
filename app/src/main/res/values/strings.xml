@@ -7,7 +7,7 @@
     <string name="text_button_minus">−</string>
     <string name="text_button_plus">+</string>
     <string name="text_button_equal">=</string>
-    <string name="text_button_comma">,</string>
+    <string name="text_button_math_separator">,</string>
     <string name="text_button_change_sign">±</string>
     <string name="text_button_zero">0</string>
     <string name="text_button_one">1</string>
