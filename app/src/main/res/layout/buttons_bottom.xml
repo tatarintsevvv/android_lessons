@@ -14,22 +14,23 @@
             android:id="@+id/buttonCE"
             android:text="@string/text_button_ce">
         </info.tatarintsev.firstlesson.SquaredButton>
-        <info.tatarintsev.firstlesson.SquaredButton
-            style="@style/ActionButton"
-            android:id="@+id/buttonC"
-             android:text="@string/text_button_c">
-        </info.tatarintsev.firstlesson.SquaredButton>
 
-        <info.tatarintsev.firstlesson.SquaredImageButton
+        <info.tatarintsev.firstlesson.SquaredButton
+            android:id="@+id/buttonC"
+            style="@style/ActionButton"
+            android:text="@string/text_button_c"
+            ></info.tatarintsev.firstlesson.SquaredButton>
+
+        <info.tatarintsev.firstlesson.SquaredButton
             android:id="@+id/buttonBackspace"
             style="@style/ActionButton"
             android:layout_weight="1"
-            android:width="45sp"
 
-            android:height="45sp"
-            android:src="@android:drawable/ic_menu_close_clear_cancel">
+            android:foreground="@android:drawable/ic_menu_close_clear_cancel"
+            android:foregroundGravity="center_vertical|center_horizontal">
+            >
 
-        </info.tatarintsev.firstlesson.SquaredImageButton>
+        </info.tatarintsev.firstlesson.SquaredButton>
         <info.tatarintsev.firstlesson.SquaredButton
             style="@style/ActionButton"
             android:id="@+id/buttonDivide"

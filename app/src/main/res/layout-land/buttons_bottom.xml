@@ -9,134 +9,122 @@
     <TableRow
         android:layout_width="wrap_content">
 
-        <info.tatarintsev.firstlesson.SquaredButton
+        <com.google.android.material.button.MaterialButton
             style="@style/ActionButtonLandscape"
             android:id="@+id/buttonCE"
             android:text="@string/text_button_ce">
-        </info.tatarintsev.firstlesson.SquaredButton>
-        <info.tatarintsev.firstlesson.SquaredButton
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
             style="@style/ActionButtonLandscape"
             android:id="@+id/buttonC"
              android:text="@string/text_button_c">
-        </info.tatarintsev.firstlesson.SquaredButton>
+        </com.google.android.material.button.MaterialButton>
 
-        <info.tatarintsev.firstlesson.SquaredImageButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonBackspace"
-            style="@style/ActionButton"
+            style="@style/ActionButtonLandscape"
             android:layout_weight="1"
-            android:width="@dimen/button_image_size_landscape"
-            android:height="@dimen/button_image_size_landscape"
-            android:maxWidth="@dimen/button_image_size_landscape"
-            android:maxHeight="@dimen/button_image_size_landscape"
-            android:src="@android:drawable/ic_menu_close_clear_cancel">
+            android:foreground="@android:drawable/ic_menu_close_clear_cancel"
+            android:foregroundGravity="center_vertical|center_horizontal">
+            >
 
-        </info.tatarintsev.firstlesson.SquaredImageButton>
-        <info.tatarintsev.firstlesson.SquaredButton
-            style="@style/ActionButton"
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
+            style="@style/ActionButtonLandscape"
             android:id="@+id/buttonDivide"
             android:text="@string/text_button_divide">
-        </info.tatarintsev.firstlesson.SquaredButton>
-    </TableRow>
-    <TableRow
-        android:layout_width="wrap_content">
-
-        <info.tatarintsev.firstlesson.SquaredButton
-            android:id="@+id/button7"
-            style="@style/DigitButton"
-            android:text="@string/text_button_seven">
-        </info.tatarintsev.firstlesson.SquaredButton>
-        <info.tatarintsev.firstlesson.SquaredButton
-            style="@style/DigitButton"
-            android:id="@+id/button8"
-            android:text="@string/text_button_eight">
-        </info.tatarintsev.firstlesson.SquaredButton>
-        <info.tatarintsev.firstlesson.SquaredButton
-            style="@style/DigitButton"
-            android:id="@+id/button9"
-            android:text="@string/text_button_nine">
-        </info.tatarintsev.firstlesson.SquaredButton>
-        <info.tatarintsev.firstlesson.SquaredButton
-            style="@style/ActionButton"
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonChangeSign"
+            style="@style/ActionButtonLandscape"
+            android:text="@string/text_button_change_sign">
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonMathSeparator"
+            style="@style/ActionButtonLandscape"
+            android:text="@string/text_button_math_separator">
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
+            style="@style/ActionButtonLandscape"
             android:id="@+id/buttonMultiply"
             android:text="@string/text_button_multiply">
-        </info.tatarintsev.firstlesson.SquaredButton>
+        </com.google.android.material.button.MaterialButton>
 
     </TableRow>
     <TableRow
         android:layout_width="wrap_content">
 
-        <info.tatarintsev.firstlesson.SquaredButton
-            style="@style/DigitButton"
-            android:id="@+id/button4"
-            android:text="@string/text_button_four">
-        </info.tatarintsev.firstlesson.SquaredButton>
-        <info.tatarintsev.firstlesson.SquaredButton
-            style="@style/DigitButton"
-            android:id="@+id/button5"
-            android:text="@string/text_button_five">
-        </info.tatarintsev.firstlesson.SquaredButton>
-        <info.tatarintsev.firstlesson.SquaredButton
-            style="@style/DigitButton"
-            android:id="@+id/button6"
-            android:text="@string/text_button_six">
-        </info.tatarintsev.firstlesson.SquaredButton>
-        <info.tatarintsev.firstlesson.SquaredButton
-            style="@style/ActionButton"
-            android:id="@+id/buttonMinus"
-            android:text="@string/text_button_minus">
-        </info.tatarintsev.firstlesson.SquaredButton>
-
-    </TableRow>
-    <TableRow
-        android:layout_width="wrap_content">
-
-        <info.tatarintsev.firstlesson.SquaredButton
-            style="@style/DigitButton"
-            android:id="@+id/button1"
-            android:text="@string/text_button_one">
-        </info.tatarintsev.firstlesson.SquaredButton>
-        <info.tatarintsev.firstlesson.SquaredButton
-            style="@style/DigitButton"
-            android:id="@+id/button2"
-            android:text="@string/text_button_two">
-        </info.tatarintsev.firstlesson.SquaredButton>
-        <info.tatarintsev.firstlesson.SquaredButton
-            style="@style/DigitButton"
-            android:id="@+id/button3"
-            android:text="@string/text_button_three">
-        </info.tatarintsev.firstlesson.SquaredButton>
-        <info.tatarintsev.firstlesson.SquaredButton
-            style="@style/ActionButton"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button7"
+            style="@style/DigitButtonLandscape"
+            android:text="@string/text_button_seven">
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
+            style="@style/DigitButtonLandscape"
+            android:id="@+id/button8"
+            android:text="@string/text_button_eight">
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
+            style="@style/DigitButtonLandscape"
+            android:id="@+id/button9"
+            android:text="@string/text_button_nine">
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
+            style="@style/ActionButtonLandscape"
             android:id="@+id/buttonPlus"
             android:text="@string/text_button_plus">
-        </info.tatarintsev.firstlesson.SquaredButton>
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
+            style="@style/ActionButtonLandscape"
+            android:id="@+id/buttonMinus"
+            android:text="@string/text_button_minus">
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
+            style="@style/ActionDoubledButtonLandscape"
+            android:layout_span="2"
+            android:id="@+id/buttonEqual"
+            android:text="@string/text_button_equal">
+        </com.google.android.material.button.MaterialButton>
 
     </TableRow>
     <TableRow
         android:layout_width="wrap_content">
 
-        <info.tatarintsev.firstlesson.SquaredButton
-            android:id="@+id/buttonChangeSign"
-            style="@style/ActionButton"
-            android:text="@string/text_button_change_sign">
-        </info.tatarintsev.firstlesson.SquaredButton>
-        <info.tatarintsev.firstlesson.SquaredButton
-            style="@style/DigitButton"
+        <com.google.android.material.button.MaterialButton
+            style="@style/DigitButtonLandscape"
             android:id="@+id/button0"
             android:text="@string/text_button_zero">
-        </info.tatarintsev.firstlesson.SquaredButton>
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
+            style="@style/DigitButtonLandscape"
+            android:id="@+id/button1"
+            android:text="@string/text_button_one">
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
+            style="@style/DigitButtonLandscape"
+            android:id="@+id/button2"
+            android:text="@string/text_button_two">
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
+            style="@style/DigitButtonLandscape"
+            android:id="@+id/button3"
+            android:text="@string/text_button_three">
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
+            style="@style/DigitButtonLandscape"
+            android:id="@+id/button4"
+            android:text="@string/text_button_four">
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
+            style="@style/DigitButtonLandscape"
+            android:id="@+id/button5"
+            android:text="@string/text_button_five">
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
+            style="@style/DigitButtonLandscape"
+            android:id="@+id/button6"
+            android:text="@string/text_button_six">
+        </com.google.android.material.button.MaterialButton>
 
-        <info.tatarintsev.firstlesson.SquaredButton
-            android:id="@+id/buttonMathSeparator"
-            style="@style/ActionButton"
-            android:text="@string/text_button_math_separator">
-        </info.tatarintsev.firstlesson.SquaredButton>
-
-        <info.tatarintsev.firstlesson.SquaredButton
-            style="@style/ActionButton"
-            android:id="@+id/buttonEqual"
-            android:text="@string/text_button_equal">
-        </info.tatarintsev.firstlesson.SquaredButton>
     </TableRow>
-
 </android.widget.TableLayout>
