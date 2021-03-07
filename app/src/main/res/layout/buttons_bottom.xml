@@ -14,20 +14,23 @@
             android:id="@+id/buttonCE"
             android:text="@string/text_button_ce">
         </info.tatarintsev.firstlesson.SquaredButton>
-        <info.tatarintsev.firstlesson.SquaredButton
-            style="@style/ActionButton"
-            android:id="@+id/buttonC"
-             android:text="@string/text_button_c">
-        </info.tatarintsev.firstlesson.SquaredButton>
 
-        <info.tatarintsev.firstlesson.SquaredImageButton
+        <info.tatarintsev.firstlesson.SquaredButton
+            android:id="@+id/buttonC"
+            style="@style/ActionButton"
+            android:text="@string/text_button_c"
+            ></info.tatarintsev.firstlesson.SquaredButton>
+
+        <info.tatarintsev.firstlesson.SquaredButton
             android:id="@+id/buttonBackspace"
             style="@style/ActionButton"
-
             android:layout_weight="1"
-            android:src="@android:drawable/ic_menu_close_clear_cancel">
 
-        </info.tatarintsev.firstlesson.SquaredImageButton>
+            android:foreground="@android:drawable/ic_menu_close_clear_cancel"
+            android:foregroundGravity="center_vertical|center_horizontal">
+            >
+
+        </info.tatarintsev.firstlesson.SquaredButton>
         <info.tatarintsev.firstlesson.SquaredButton
             style="@style/ActionButton"
             android:id="@+id/buttonDivide"
@@ -40,7 +43,8 @@
         <info.tatarintsev.firstlesson.SquaredButton
             android:id="@+id/button7"
             style="@style/DigitButton"
-            android:text="@string/text_button_seven"></info.tatarintsev.firstlesson.SquaredButton>
+            android:text="@string/text_button_seven">
+        </info.tatarintsev.firstlesson.SquaredButton>
         <info.tatarintsev.firstlesson.SquaredButton
             style="@style/DigitButton"
             android:id="@+id/button8"
@@ -123,9 +127,9 @@
         </info.tatarintsev.firstlesson.SquaredButton>
 
         <info.tatarintsev.firstlesson.SquaredButton
-            android:id="@+id/buttonQuota"
+            android:id="@+id/buttonMathSeparator"
             style="@style/ActionButton"
-            android:text="@string/text_button_comma">
+            android:text="@string/text_button_math_separator">
         </info.tatarintsev.firstlesson.SquaredButton>
 
         <info.tatarintsev.firstlesson.SquaredButton
