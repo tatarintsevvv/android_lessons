@@ -17,16 +17,16 @@
         <info.tatarintsev.firstlesson.SquaredButton
             style="@style/ActionButton"
             android:id="@+id/buttonC"
-             android:text="@string/text_button_c">
+            android:text="@string/text_button_c">
         </info.tatarintsev.firstlesson.SquaredButton>
 
         <info.tatarintsev.firstlesson.SquaredImageButton
             android:id="@+id/buttonBackspace"
             style="@style/ActionButton"
-            android:layout_weight="1"
-            android:width="45sp"
+            android:width="50sp"
+            android:height="50sp"
 
-            android:height="45sp"
+            android:layout_weight="1"
             android:src="@android:drawable/ic_menu_close_clear_cancel">
 
         </info.tatarintsev.firstlesson.SquaredImageButton>

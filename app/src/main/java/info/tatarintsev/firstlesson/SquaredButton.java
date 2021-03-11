@@ -30,6 +30,7 @@ public class SquaredButton extends androidx.appcompat.widget.AppCompatButton {
         final int width = getMeasuredWidth(); // ширина
 
         // теперь задаем новый размер
+//        setMeasuredDimension(Math.max(width, height), Math.max(width, height));
         setMeasuredDimension(Math.max(width, height), Math.max(width, height));
     }
 

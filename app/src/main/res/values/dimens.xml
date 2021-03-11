@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="button_size">40sp</dimen>
+    <dimen name="button_size_landscape">30sp</dimen>
+    <dimen name="button_image_size">35sp</dimen>
+    <dimen name="button_image_size_landscape">25sp</dimen>
+    <dimen name="button_margin">5sp</dimen>
+</resources>
