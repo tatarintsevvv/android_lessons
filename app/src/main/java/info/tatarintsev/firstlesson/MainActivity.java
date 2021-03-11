@@ -5,11 +5,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ScrollView;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -20,21 +24,36 @@ import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
-
+    private static final int REQUEST_CODE_SETTING_ACTIVITY = 99;
     private final static String keyCalculatorData = "CalculatorData";
     // максимальное число знаков без учета знака числа (положительное/отрицательное)
     private final int mMaxSymbols = 9;
+    private int mDayTheme = R.style.Theme_MaterialComponents_DayNight_Bridge;
+    private int mNightTheme = R.style.Theme_FirstLessonNight;
 
+    private Settings settings;
     private CalculatorData mCalcData = new CalculatorData(mMaxSymbols);
 
     private Button[] mDigitButtons = new Button[10];
     Map<Integer, Object> mActionButtons = new HashMap<>();
 
+    private SharedPreferences mSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mSharedPreferences = getSharedPreferences("CalculatorSetings", Context.MODE_PRIVATE);
+        settings = new Settings();
+
+        settings.setNightTheme(mSharedPreferences.getBoolean("isNightTheme", false));
+        if(settings.isNightTheme()) {
+            this.setTheme(mNightTheme);
+        } else {
+            this.setTheme(mDayTheme);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         // десятичный разделитель
         DecimalFormat format=(DecimalFormat) NumberFormat.getInstance();
@@ -48,6 +67,53 @@ public class MainActivity extends AppCompatActivity {
 
         initDigiButtons();
         initActionButtons();
+
+        Button btnToSettings = (Button)findViewById(R.id.button_to_settings);
+        btnToSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent runSettings = new Intent(MainActivity.this, SettingsActivity.class);
+                runSettings.putExtra("CalculatorSettings", settings);
+                startActivityForResult(runSettings, REQUEST_CODE_SETTING_ACTIVITY);
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(requestCode != REQUEST_CODE_SETTING_ACTIVITY) {
+            super.onActivityResult(requestCode, resultCode, data);
+            return;
+        }
+
+        if(resultCode == RESULT_OK) {
+            settings = data.getParcelableExtra("CalculatorSettings");
+            populateSettings();
+        }
+    }
+
+    private void populateSettings() {
+        Resources.Theme theme = this.getTheme();
+        PackageInfo packageInfo;
+        try
+        {
+            packageInfo = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_META_DATA);
+            int themeResId = packageInfo.applicationInfo.theme;
+            if(settings.isNightTheme() && mDayTheme == themeResId) {
+                this.setTheme(mNightTheme);
+            } else if(!settings.isNightTheme() && mNightTheme == themeResId){
+                this.setTheme(mDayTheme);
+            }
+            SharedPreferences.Editor editor = mSharedPreferences.edit();
+            editor.putBoolean("isNightTheme", settings.isNightTheme());
+            editor.apply();
+            this.recreate();
+        }
+        catch (PackageManager.NameNotFoundException e)
+        {
+            return;
+        }
 
     }
 

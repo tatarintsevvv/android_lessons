@@ -20,4 +20,7 @@
     <string name="text_button_eight">8</string>
     <string name="text_button_nine">9</string>
     <string name="text_result">0</string>
+    <string name="text_theme_choose">Night theme</string>
+    <string name="settings_button_back">Back</string>
+    <string name="button_three_dots">...</string>
 </resources>
