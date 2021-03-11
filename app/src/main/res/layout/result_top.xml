@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/resultTopLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100sp">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_vertical"
-        android:layout_margin="15sp"
-        android:adjustViewBounds="false"
-        android:scaleType="fitXY"
-        android:src="@drawable/fence640"></androidx.appcompat.widget.AppCompatImageView>
+    <info.tatarintsev.firstlesson.SquaredButton
+        android:id="@+id/button_to_settings"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:text="@string/button_three_dots"
+        android:textSize="11sp"
+        >
+
+    </info.tatarintsev.firstlesson.SquaredButton>
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="right|center_vertical"
+        android:layout_gravity="end|center_vertical"
         android:layout_margin="15sp"
+        app:layout_constraintStart_toEndOf="@id/button_to_settings"
 
         android:text="@string/text_result"
         android:textAlignment="textEnd"
@@ -26,4 +33,7 @@
         tools:ignore="RtlCompat,RtlHardcoded">
 
     </androidx.appcompat.widget.AppCompatTextView>
-</FrameLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
