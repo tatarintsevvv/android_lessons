@@ -3,14 +3,6 @@ plugins {
 }
 
 android {
-    signingConfigs {
-        config {
-            storeFile file('C:\\Users\\user\\firstlesson.jks')
-            storePassword 'purple'
-            keyAlias 'key0'
-            keyPassword 'purple'
-        }
-    }
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 

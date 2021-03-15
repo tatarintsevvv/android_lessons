@@ -34,6 +34,7 @@ public class SquaredButton extends MaterialButton {
 
         // теперь задаем новый размер
         setMeasuredDimension(Math.max(width, height), Math.max(width, height));
+        setCornerRadius(Math.max(width, height)/2);
     }
 
 

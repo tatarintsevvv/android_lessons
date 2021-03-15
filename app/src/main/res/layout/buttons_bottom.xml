@@ -25,9 +25,7 @@
             android:id="@+id/buttonBackspace"
             style="@style/ActionButton"
             android:layout_weight="1"
-
-            android:foreground="@android:drawable/ic_menu_close_clear_cancel"
-            android:foregroundGravity="center_vertical|center_horizontal">
+            app:icon="@android:drawable/ic_menu_delete">
             >
 
         </info.tatarintsev.firstlesson.SquaredButton>
