@@ -18,7 +18,7 @@ public class NoticeData implements Parcelable {
         this.m_dateCreate = dateCreate;
     }
 
-    public NoticeData(String title, String description, String strDateCreate) {
+    public NoticeData(String title, String description, String strDateCreate) throws ParseException {
         this.m_title = title;
         this.m_description = description;
         SimpleDateFormat dateFormat = new SimpleDateFormat("DD-MM-YYYY");
