@@ -21,7 +21,7 @@ public class NoticeData implements Parcelable {
     public NoticeData(String title, String description, String strDateCreate) throws ParseException {
         this.m_title = title;
         this.m_description = description;
-        SimpleDateFormat dateFormat = new SimpleDateFormat("DD-MM-YYYY");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("DD-MM-yyyy");
         m_dateCreate = dateFormat.parse(strDateCreate);
     }
 
@@ -61,7 +61,7 @@ public class NoticeData implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(m_title);
         dest.writeString(m_description);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("DD-MM-YYYY");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("DD-MM-yyyy");
         dest.writeString(dateFormat.format(m_dateCreate));
     }
 
@@ -86,7 +86,7 @@ public class NoticeData implements Parcelable {
     private NoticeData(Parcel parcel) throws ParseException {
         m_title = parcel.readString();
         m_description = parcel.readString();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("DD-MM-YYYY");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("DD-MM-yyyy");
         m_dateCreate = dateFormat.parse(parcel.readString());
     }
 }
