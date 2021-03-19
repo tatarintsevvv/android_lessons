@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="title">
+        <item>Первая</item>
+        <item>Номер Два</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="description">
+        <item>Содержание первой заметки</item>
+        <item>Есть ли жизнь на Марсе?</item>
+        <item>Нет повести печальнее на свете</item>
+    </string-array>
+    <string-array name="where">
+        <item>01-01-0001</item>
+        <item>31-12-9999</item>
+        <item>11-11-1111</item>
+    </string-array>
+</resources>
