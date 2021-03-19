@@ -18,6 +18,13 @@ public class NoticeData implements Parcelable {
         this.m_dateCreate = dateCreate;
     }
 
+    public NoticeData(String title, String description, String strDateCreate) {
+        this.m_title = title;
+        this.m_description = description;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("DD-MM-YYYY");
+        m_dateCreate = dateFormat.parse(strDateCreate);
+    }
+
     public NoticeData() {
     }
 
@@ -80,6 +87,6 @@ public class NoticeData implements Parcelable {
         m_title = parcel.readString();
         m_description = parcel.readString();
         SimpleDateFormat dateFormat = new SimpleDateFormat("DD-MM-YYYY");
-        Date d = dateFormat.parse(parcel.readString());
+        m_dateCreate = dateFormat.parse(parcel.readString());
     }
 }
