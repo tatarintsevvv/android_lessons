@@ -36,10 +36,10 @@ public class NoticeDetailFragment extends Fragment {
      * @return A new instance of fragment NoticeDetailFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static NoticeDetailFragment newInstance(String param) {
+    public static NoticeDetailFragment newInstance(int param) {
         NoticeDetailFragment fragment = new NoticeDetailFragment();
         Bundle args = new Bundle();
-        args.putString(FRAGMENT_TOKEN, param);
+        args.putInt(FRAGMENT_TOKEN, param);
         fragment.setArguments(args);
         return fragment;
     }
