@@ -75,7 +75,10 @@ public class NoticeDetailFragment extends Fragment {
                 new DatePicker.OnDateChangedListener() {
                     @Override
                     public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-
+                        DatePicker dp = (DatePicker)view;
+                        Calendar calendarNew = Calendar.getInstance();
+                        calendarNew.set(year, monthOfYear, dayOfMonth);
+                        mNotice.setDateCreate(calendarNew.getTime());
                     }
                 });
         return view;
