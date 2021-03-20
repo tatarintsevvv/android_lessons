@@ -21,8 +21,8 @@ import java.util.Date;
  */
 public class NoticeDetailFragment extends Fragment {
 
-    public static final String FRAGMENT_TOKEN = "index";
-    private int mIndex;
+    public static final String FRAGMENT_TOKEN = "notice";
+    private NoticeData mNotice;
 
     public NoticeDetailFragment() {
         // Required empty public constructor
@@ -32,14 +32,14 @@ public class NoticeDetailFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param Parameter 1.
+     * @param notice заметка
      * @return A new instance of fragment NoticeDetailFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static NoticeDetailFragment newInstance(int param) {
+    public static NoticeDetailFragment newInstance(NoticeData notice) {
         NoticeDetailFragment fragment = new NoticeDetailFragment();
         Bundle args = new Bundle();
-        args.putInt(FRAGMENT_TOKEN, param);
+        args.putParcelable(FRAGMENT_TOKEN, notice);
         fragment.setArguments(args);
         return fragment;
     }
@@ -48,7 +48,7 @@ public class NoticeDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mIndex = getArguments().getInt(FRAGMENT_TOKEN);
+            mNotice = getArguments().getParcelable(FRAGMENT_TOKEN);
         }
     }
 
@@ -57,7 +57,7 @@ public class NoticeDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_notice_detail, container, false);
-        NoticeData notice = MainActivity.m_notices[mIndex];
+        NoticeData notice = mNotice;
         TextView textView = view.findViewById(R.id.title_detail);
         textView.setText(notice.getTitle());
 

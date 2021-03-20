@@ -18,6 +18,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.ParseException;
+
 /**
  * A simple {@link Fragment} subclass.
  * create an instance of this fragment.
@@ -25,7 +27,7 @@ import android.widget.TextView;
 public class NoticeListFragment extends Fragment {
 
     private static final String CURRENT_NOTE = "CurrentNote";
-    private int currentPosition = 0;
+    private NoticeData currentNotice;
     private boolean isLandscape;
 
     @Override
@@ -49,8 +51,14 @@ public class NoticeListFragment extends Fragment {
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    currentPosition = index;
-                    showDetailFragment(index);
+                    try {
+                        currentNotice = new NoticeData(getResources().getStringArray(R.array.title)[index],
+                                getResources().getStringArray(R.array.description)[index],
+                                getResources().getStringArray(R.array.where)[index]);
+                        showDetailFragment(currentNotice);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         }
@@ -58,7 +66,7 @@ public class NoticeListFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putInt(CURRENT_NOTE, currentPosition);
+        outState.putParcelable(CURRENT_NOTE, currentNotice);
         super.onSaveInstanceState(outState);
     }
 
@@ -70,31 +78,31 @@ public class NoticeListFragment extends Fragment {
                 == Configuration.ORIENTATION_LANDSCAPE;
 
         if(savedInstanceState != null) {
-            currentPosition = savedInstanceState.getInt(CURRENT_NOTE);
+            currentNotice = savedInstanceState.getParcelable(CURRENT_NOTE);
         }
 
         if(isLandscape) {
-            showLandscapeDetailFragment(currentPosition);
+            showLandscapeDetailFragment(currentNotice);
         }
     }
 
-    private void showDetailFragment(int index) {
+    private void showDetailFragment(NoticeData notice) {
         if(isLandscape) {
-            showLandscapeDetailFragment(index);
+            showLandscapeDetailFragment(notice);
         } else {
-            showPortraitDetailFragment(index);
+            showPortraitDetailFragment(notice);
         }
     }
 
-    private void showPortraitDetailFragment(int index) {
+    private void showPortraitDetailFragment(NoticeData notice) {
         Intent intent = new Intent();
         intent.setClass(getActivity(), NoticeDetailActivity.class);
-        intent.putExtra(NoticeDetailFragment.FRAGMENT_TOKEN, index);
+        intent.putExtra(NoticeDetailFragment.FRAGMENT_TOKEN, notice);
         startActivity(intent);
     }
 
-    private void showLandscapeDetailFragment(int index) {
-        NoticeDetailFragment detail = NoticeDetailFragment.newInstance(index);
+    private void showLandscapeDetailFragment(NoticeData notice) {
+        NoticeDetailFragment detail = NoticeDetailFragment.newInstance(notice);
         FragmentManager fragmentManager = requireActivity()
                 .getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
