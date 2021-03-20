@@ -1,5 +1,6 @@
 package info.tatarintsev.firstlesson;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,12 +21,6 @@ import android.widget.TextView;
  */
 public class NoticeListFragment extends Fragment {
 
-    public NoticeListFragment() {
-        // Required empty public constructor
-    }
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,6 +38,20 @@ public class NoticeListFragment extends Fragment {
             textView.setText(titles[i]);
             textView.setTextSize(40);
             linear.addView(textView);
+            final int index = i;
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(), NoticeDetailActivity.class);
+                    intent.putExtra(NoticeDetailFragment.FRAGMENT_TOKEN, index);
+                    startActivity(intent);
+                }
+            });
         }
+    }
+
+    private void showDetailFragment(int index) {
+
     }
 }

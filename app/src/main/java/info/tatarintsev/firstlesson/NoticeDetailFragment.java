@@ -21,7 +21,7 @@ import java.util.Date;
  */
 public class NoticeDetailFragment extends Fragment {
 
-    private static final String FRAGMENT_TOKEN = "index";
+    public static final String FRAGMENT_TOKEN = "index";
     private int mIndex;
 
     public NoticeDetailFragment() {
