@@ -105,12 +105,7 @@ public class NoticeListFragment extends Fragment {
     }
 
     private void showPortraitDetailFragment(NoticeData notice) {
-        /*
-        Intent intent = new Intent();
-        intent.setClass(getActivity(), NoticeDetailActivity.class);
-        intent.putExtra(NoticeDetailFragment.FRAGMENT_TOKEN, notice);
-        startActivity(intent);
-         */
+
         NoticeDetailFragment detail = NoticeDetailFragment.newInstance(notice);
         FragmentManager fragmentManager = requireActivity()
                 .getSupportFragmentManager();
