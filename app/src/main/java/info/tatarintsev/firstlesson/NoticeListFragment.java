@@ -19,6 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +31,17 @@ public class NoticeListFragment extends Fragment {
     private static final String CURRENT_NOTE = "CurrentNote";
     private NoticeData currentNotice;
     private boolean isLandscape;
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @return A new instance of fragment NoticeListFragment.
+     */
+    public static NoticeListFragment newInstance() {
+        return new NoticeListFragment();
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,17 +61,14 @@ public class NoticeListFragment extends Fragment {
             textView.setTextSize(40);
             linear.addView(textView);
             final int index = i;
-            textView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    try {
-                        currentNotice = new NoticeData(getResources().getStringArray(R.array.title)[index],
-                                getResources().getStringArray(R.array.description)[index],
-                                getResources().getStringArray(R.array.where)[index]);
-                        showDetailFragment(currentNotice);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
+            textView.setOnClickListener(v -> {
+                try {
+                    currentNotice = new NoticeData(getResources().getStringArray(R.array.title)[index],
+                            getResources().getStringArray(R.array.description)[index],
+                            getResources().getStringArray(R.array.where)[index]);
+                    showDetailFragment(currentNotice);
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
             });
         }
@@ -81,7 +91,7 @@ public class NoticeListFragment extends Fragment {
             currentNotice = savedInstanceState.getParcelable(CURRENT_NOTE);
         }
 
-        if(isLandscape) {
+        if(isLandscape && currentNotice != null) {
             showLandscapeDetailFragment(currentNotice);
         }
     }
@@ -95,10 +105,30 @@ public class NoticeListFragment extends Fragment {
     }
 
     private void showPortraitDetailFragment(NoticeData notice) {
+        /*
         Intent intent = new Intent();
         intent.setClass(getActivity(), NoticeDetailActivity.class);
         intent.putExtra(NoticeDetailFragment.FRAGMENT_TOKEN, notice);
         startActivity(intent);
+         */
+        NoticeDetailFragment detail = NoticeDetailFragment.newInstance(notice);
+        FragmentManager fragmentManager = requireActivity()
+                .getSupportFragmentManager();
+        List<Fragment> fragmentList = fragmentManager.getFragments();
+        List<Fragment> visibleList = new ArrayList<>();
+        for (Fragment fragment: fragmentList) {
+            if(fragment != null && fragment.isVisible()) {
+                visibleList.add(fragment);
+            }
+        }
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.addToBackStack(CURRENT_NOTE);
+        for (Fragment fragment: visibleList) {
+            fragmentTransaction.hide(fragment);
+        }
+        fragmentTransaction.replace(R.id.notes_list, detail);
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        fragmentTransaction.commit();
     }
 
     private void showLandscapeDetailFragment(NoticeData notice) {
