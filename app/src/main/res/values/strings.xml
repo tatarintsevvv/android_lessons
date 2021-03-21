@@ -20,4 +20,7 @@
     <string name="favorite">Избранное</string>
     <string name="search">Поиск</string>
     <string name="main">Главная</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="fragment_navigation">Title</string>
 </resources>
