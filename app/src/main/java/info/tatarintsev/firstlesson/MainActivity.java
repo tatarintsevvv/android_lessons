@@ -22,6 +22,8 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import info.tatarintsev.firstlesson.ui.NoticeListFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     public static NoticeData[] m_notices;
