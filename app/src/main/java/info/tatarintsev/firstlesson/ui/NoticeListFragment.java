@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -66,6 +67,14 @@ public class NoticeListFragment extends Fragment {
         // Установим адаптер
         NoticeListAdapter adapter = new NoticeListAdapter(data);
         recyclerView.setAdapter(adapter);
+
+        // Установим слушателя
+        adapter.SetOnItemClickListener(new NoticeListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(getContext(), String.format("%s - %d", ((TextView)view).getText(), position), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
