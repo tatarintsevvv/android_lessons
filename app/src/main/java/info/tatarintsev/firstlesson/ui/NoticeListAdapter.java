@@ -11,17 +11,25 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.sql.DataSource;
+
+import info.tatarintsev.firstlesson.NoticeData;
+import info.tatarintsev.firstlesson.NoticeSource;
 import info.tatarintsev.firstlesson.R;
 
 public class NoticeListAdapter
     extends RecyclerView.Adapter<NoticeListAdapter.ViewHolder> {
 
-    private String[] dataSource;
+    private final static String TAG = "NoticeListAdapter";
+    private NoticeSource dataSource;
     private AdapterView.OnItemClickListener itemClickListener;
 
     // Передаём в конструктор источник данных
     // В нашем случае это массив, но может быть и запрос к БД
-    public NoticeListAdapter(String[] dataSource) {
+    public NoticeListAdapter(NoticeSource dataSource) {
         this.dataSource = dataSource;
     }
 
@@ -44,13 +52,13 @@ public class NoticeListAdapter
     public void onBindViewHolder(@NonNull NoticeListAdapter.ViewHolder viewHolder, int i) {
         // Получить элемент из источника данных (БД, интернет...)
         // Вынести на экран, используя ViewHolder
-        viewHolder.getLinearLayout();
+        viewHolder.setData(dataSource.getNoticeData(i));
     }
 
     // Вернуть размер данных, вызывается менеджером
     @Override
     public int getItemCount() {
-        return dataSource.length;
+        return dataSource.size();
     }
 
     // Сеттер слушателя нажатий
@@ -68,19 +76,32 @@ public class NoticeListAdapter
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private LinearLayout linearLayout;
+        private TextView title;
+        private TextView description;
+        private TextView dateCreate;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             linearLayout = (LinearLayout) itemView;
-            linearLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (itemClickListener != null) {
-                        itemClickListener.onItemClick(v, getAdapterPosition());
-                    }
+            title = itemView.findViewById(R.id.title_detail);
+            description = itemView.findViewById(R.id.description_detail);
+
+
+            linearLayout.setOnClickListener(v -> {
+                if (itemClickListener != null) {
+                    itemClickListener.onItemClick(v, getAdapterPosition());
                 }
             });
 
+        }
+
+        public void setData(NoticeData noticeData){
+            title.setText(noticeData.getTitle());
+            description.setText(noticeData.getDescription());
+            Date date = noticeData.getDateCreate();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            String strDateCreate = simpleDateFormat.format(date);
+            dateCreate.setText(strDateCreate);
         }
 
         public LinearLayout getLinearLayout() {
