@@ -24,6 +24,8 @@ import java.util.List;
 
 import info.tatarintsev.firstlesson.NoticeData;
 import info.tatarintsev.firstlesson.NoticeDetailFragment;
+import info.tatarintsev.firstlesson.NoticeSource;
+import info.tatarintsev.firstlesson.NoticeSourceImpl;
 import info.tatarintsev.firstlesson.R;
 
 /**
@@ -50,12 +52,12 @@ public class NoticeListFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_notice_list, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.notices_recycler_view);
-        String[] data = getResources().getStringArray(R.array.title);
+        NoticeSource data = new NoticeSourceImpl(getResources()).init();
         initRecyclerView(recyclerView, data);
         return view;
     }
 
-    private void initRecyclerView(RecyclerView recyclerView, String[] data){
+    private void initRecyclerView(RecyclerView recyclerView, NoticeSource data){
 
         // Эта установка служит для повышения производительности системы
         recyclerView.setHasFixedSize(true);
@@ -72,7 +74,7 @@ public class NoticeListFragment extends Fragment {
         adapter.SetOnItemClickListener(new NoticeListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(getContext(), String.format("%s - %d", ((TextView)view).getText(), position), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), String.format("Позиция - %d", position), Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,7 +26,7 @@ public class NoticeListAdapter
 
     private final static String TAG = "NoticeListAdapter";
     private NoticeSource dataSource;
-    private AdapterView.OnItemClickListener itemClickListener;
+    private OnItemClickListener itemClickListener;
 
     // Передаём в конструктор источник данных
     // В нашем случае это массив, но может быть и запрос к БД
@@ -63,7 +64,7 @@ public class NoticeListAdapter
 
     // Сеттер слушателя нажатий
     public void SetOnItemClickListener(OnItemClickListener itemClickListener){
-        this.itemClickListener = (AdapterView.OnItemClickListener) itemClickListener;
+        this.itemClickListener =  itemClickListener;
     }
 
     // Интерфейс для обработки нажатий, как в ListView
@@ -75,19 +76,20 @@ public class NoticeListAdapter
     // Сложные данные могут потребовать несколько View на один пункт списка
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private LinearLayout linearLayout;
+        private CardView cardView;
         private TextView title;
         private TextView description;
         private TextView dateCreate;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            linearLayout = (LinearLayout) itemView;
+            cardView = (CardView) itemView;
             title = itemView.findViewById(R.id.title_detail);
             description = itemView.findViewById(R.id.description_detail);
+            dateCreate = itemView.findViewById(R.id.date_detail);
 
 
-            linearLayout.setOnClickListener(v -> {
+            cardView.setOnClickListener(v -> {
                 if (itemClickListener != null) {
                     itemClickListener.onItemClick(v, getAdapterPosition());
                 }
@@ -104,8 +106,8 @@ public class NoticeListAdapter
             dateCreate.setText(strDateCreate);
         }
 
-        public LinearLayout getLinearLayout() {
-            return linearLayout;
+        public CardView getCardView() {
+            return cardView;
         }
     }
 }
