@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,6 +40,7 @@ import info.tatarintsev.firstlesson.R;
  */
 public class NoticeListFragment extends Fragment {
 
+    private static final int DEFAULT_DURATION = 1000;
     private NoticeSource data;
     private NoticeListAdapter adapter;
     private RecyclerView recyclerView;
@@ -80,7 +82,7 @@ public class NoticeListFragment extends Fragment {
                         "Описание " + data.size(),
                         new Date()));
                 adapter.notifyItemInserted(data.size() - 1);
-                recyclerView.scrollToPosition(data.size() - 1);
+                recyclerView.smoothScrollToPosition(data.size() - 1);
                 return true;
             case R.id.action_clear:
                 data.clearNoticeData();
@@ -109,7 +111,7 @@ public class NoticeListFragment extends Fragment {
         // Установим адаптер
         adapter = new NoticeListAdapter(data, this);
         recyclerView.setAdapter(adapter);
-/*
+
         // Установим слушателя
         adapter.SetOnItemClickListener(new NoticeListAdapter.OnItemClickListener() {
             @Override
@@ -118,7 +120,10 @@ public class NoticeListFragment extends Fragment {
             }
         });
 
- */
+        DefaultItemAnimator animator = new DefaultItemAnimator();
+        animator.setAddDuration(DEFAULT_DURATION);
+        animator.setRemoveDuration(DEFAULT_DURATION);
+        recyclerView.setItemAnimator(animator);
     }
     @Override
     public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
