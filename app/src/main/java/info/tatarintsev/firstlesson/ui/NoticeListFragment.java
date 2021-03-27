@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -20,6 +23,7 @@ import android.widget.Toast;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import info.tatarintsev.firstlesson.NoticeData;
@@ -33,6 +37,10 @@ import info.tatarintsev.firstlesson.R;
  * create an instance of this fragment.
  */
 public class NoticeListFragment extends Fragment {
+
+    private NoticeSource data;
+    private NoticeListAdapter adapter;
+    private RecyclerView recyclerView;
 
     private static final String CURRENT_NOTE = "CurrentNote";
 
@@ -53,11 +61,42 @@ public class NoticeListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_notice_list, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.notices_recycler_view);
         NoticeSource data = new NoticeSourceImpl(getResources()).init();
-        initRecyclerView(recyclerView, data);
+        initView(view);
+        setHasOptionsMenu(true);
         return view;
     }
 
-    private void initRecyclerView(RecyclerView recyclerView, NoticeSource data){
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.notices_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_add:
+                data.addNoticeData(new NoticeData("Заголовок " + data.size(),
+                        "Описание " + data.size(),
+                        new Date()));
+                adapter.notifyItemInserted(data.size() - 1);
+                recyclerView.scrollToPosition(data.size() - 1);
+                return true;
+            case R.id.action_clear:
+                data.clearNoticeData();
+                adapter.notifyDataSetChanged();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void initView(View view) {
+        recyclerView = view.findViewById(R.id.notices_recycler_view);
+        // Получим источник данных для списка
+        data = new NoticeSourceImpl(getResources()).init();
+        initRecyclerView();
+    }
+
+    private void initRecyclerView(){
 
         // Эта установка служит для повышения производительности системы
         recyclerView.setHasFixedSize(true);
@@ -67,7 +106,7 @@ public class NoticeListFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         // Установим адаптер
-        NoticeListAdapter adapter = new NoticeListAdapter(data);
+        adapter = new NoticeListAdapter(data);
         recyclerView.setAdapter(adapter);
 
         // Установим слушателя
@@ -78,6 +117,5 @@ public class NoticeListFragment extends Fragment {
             }
         });
     }
-
 
 }
