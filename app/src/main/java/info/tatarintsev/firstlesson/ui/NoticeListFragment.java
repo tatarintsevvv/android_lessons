@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -106,9 +107,9 @@ public class NoticeListFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         // Установим адаптер
-        adapter = new NoticeListAdapter(data);
+        adapter = new NoticeListAdapter(data, this);
         recyclerView.setAdapter(adapter);
-
+/*
         // Установим слушателя
         adapter.SetOnItemClickListener(new NoticeListAdapter.OnItemClickListener() {
             @Override
@@ -116,6 +117,34 @@ public class NoticeListFragment extends Fragment {
                 Toast.makeText(getContext(), String.format("Позиция - %d", position), Toast.LENGTH_SHORT).show();
             }
         });
+
+ */
     }
+    @Override
+    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = requireActivity().getMenuInflater();
+        inflater.inflate(R.menu.notice_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        int position = adapter.getMenuPosition();
+        switch(item.getItemId()) {
+            case R.id.action_update:
+                data.updateNoticeData(position,
+                        new NoticeData("Кадр " + position,
+                                data.getNoticeData(position).getDescription(),
+                                data.getNoticeData(position).getDateCreate()));
+                adapter.notifyItemChanged(position);
+                return true;
+            case R.id.action_delete:
+                data.deleteNoticeData(position);
+                adapter.notifyItemRemoved(position);
+                return true;
+        }
+        return super.onContextItemSelected(item);
+    }
+
 
 }

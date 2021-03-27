@@ -18,6 +18,8 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="settings">Настройки</string>
     <string name="add_notice">Добавить</string>
+    <string name="update_notice">Изменить</string>
+    <string name="delete_notice">Удалить</string>
     <string name="search">Поиск</string>
     <string name="clear">Очистить</string>
     <string name="main">Главная</string>
