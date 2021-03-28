@@ -1,5 +1,6 @@
 package info.tatarintsev.firstlesson.ui;
 
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
@@ -28,11 +29,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import info.tatarintsev.firstlesson.EditNoticeFragment;
+import info.tatarintsev.firstlesson.MainActivity;
+import info.tatarintsev.firstlesson.Navigation;
 import info.tatarintsev.firstlesson.NoticeData;
 import info.tatarintsev.firstlesson.NoticeDetailFragment;
 import info.tatarintsev.firstlesson.NoticeSource;
 import info.tatarintsev.firstlesson.NoticeSourceImpl;
 import info.tatarintsev.firstlesson.R;
+import info.tatarintsev.firstlesson.observe.Observer;
+import info.tatarintsev.firstlesson.observe.Publisher;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,6 +50,12 @@ public class NoticeListFragment extends Fragment {
     private NoticeSource data;
     private NoticeListAdapter adapter;
     private RecyclerView recyclerView;
+    private Navigation navigation;
+    private Publisher publisher;
+    // признак, что при повторном открытии фрагмента
+    // (возврате из фрагмента, добавляющего запись)
+    // надо прыгнуть на последнюю запись
+    private boolean moveToLastPosition;
 
     private static final String CURRENT_NOTE = "CurrentNote";
 
@@ -58,15 +70,38 @@ public class NoticeListFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Получим источник данных для списка
+        // Поскольку onCreateView запускается каждый раз
+        // при возврате в фрагмент, данные надо создавать один раз
+        data = new NoticeSourceImpl(getResources()).init();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_notice_list, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.notices_recycler_view);
-        NoticeSource data = new NoticeSourceImpl(getResources()).init();
         initView(view);
         setHasOptionsMenu(true);
         return view;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        MainActivity activity = (MainActivity)context;
+        navigation = activity.getNavigation();
+        publisher = activity.getPublisher();
+    }
+
+    @Override
+    public void onDetach() {
+        navigation = null;
+        publisher = null;
+        super.onDetach();
     }
 
     @Override
@@ -78,11 +113,17 @@ public class NoticeListFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_add:
-                data.addNoticeData(new NoticeData("Заголовок " + data.size(),
-                        "Описание " + data.size(),
-                        new Date()));
-                adapter.notifyItemInserted(data.size() - 1);
-                recyclerView.smoothScrollToPosition(data.size() - 1);
+                navigation.addFragment(EditNoticeFragment.newInstance(), true);
+                publisher.subscribe(new Observer() {
+                    @Override
+                    public void updateNoticeData(NoticeData cardData) {
+                        data.addNoticeData(cardData);
+                        adapter.notifyItemInserted(data.size() - 1);
+                        // это сигнал, чтобы вызванный метод onCreateView
+                        // перепрыгнул на конец списка
+                        moveToLastPosition = true;
+                    }
+                });
                 return true;
             case R.id.action_clear:
                 data.clearNoticeData();
@@ -111,6 +152,11 @@ public class NoticeListFragment extends Fragment {
         // Установим адаптер
         adapter = new NoticeListAdapter(data, this);
         recyclerView.setAdapter(adapter);
+
+        if (moveToLastPosition){
+            recyclerView.smoothScrollToPosition(data.size() - 1);
+            moveToLastPosition = false;
+        }
 
         // Установим слушателя
         adapter.SetOnItemClickListener(new NoticeListAdapter.OnItemClickListener() {
@@ -142,6 +188,14 @@ public class NoticeListFragment extends Fragment {
                                 data.getNoticeData(position).getDescription(),
                                 data.getNoticeData(position).getDateCreate()));
                 adapter.notifyItemChanged(position);
+                navigation.addFragment(EditNoticeFragment.newInstance(data.getNoticeData(position)), true);
+                publisher.subscribe(new Observer() {
+                    @Override
+                    public void updateNoticeData(NoticeData noticeData) {
+                        data.updateNoticeData(position, noticeData);
+                        adapter.notifyItemChanged(position);
+                    }
+                });
                 return true;
             case R.id.action_delete:
                 data.deleteNoticeData(position);

@@ -22,32 +22,33 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import info.tatarintsev.firstlesson.observe.Publisher;
 import info.tatarintsev.firstlesson.ui.NoticeListFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     public static NoticeData[] m_notices;
-
+    private Navigation navigation;
+    private Publisher publisher = new Publisher();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        navigation = new Navigation(getSupportFragmentManager());
         initView();
 
-        NoticeListFragment fragment = NoticeListFragment.newInstance();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.notes_list, fragment);
-        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        fragmentTransaction.commit();
+        getNavigation().addFragment(NoticeListFragment.newInstance(), false);
+
 
     }
 
     private void initView() {
         Toolbar toolbar = initToolbar();
         initDrawer(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
     }
 
     Toolbar initToolbar() {
@@ -80,6 +81,20 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    public Navigation getNavigation() {
+        return navigation;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
     private boolean navigateFragment(int id) {
         switch (id) {
             case R.id.action_settings:
@@ -89,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 addBasicFragment(new NoticeListFragment());
                 return true;
             case R.id.action_favorite:
-                addBasicFragment(new AddNoticeFragment());
+                addBasicFragment(new EditNoticeFragment());
                 return true;
         }
         return false;
