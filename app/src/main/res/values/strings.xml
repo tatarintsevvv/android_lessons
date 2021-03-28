@@ -18,11 +18,15 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="settings">Настройки</string>
     <string name="add_notice">Добавить</string>
+    <string name="update_notice">Изменить</string>
+    <string name="delete_notice">Удалить</string>
     <string name="search">Поиск</string>
+    <string name="clear">Очистить</string>
     <string name="main">Главная</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="fragment_navigation">Title</string>
     <string name="title_edit_hint">Заголовок</string>
     <string name="description_edit_hint">Описание</string>
+    <string name="save">Сохранить</string>
 </resources>

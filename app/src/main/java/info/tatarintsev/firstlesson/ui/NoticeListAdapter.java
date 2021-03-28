@@ -1,6 +1,9 @@
 package info.tatarintsev.firstlesson.ui;
 
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -8,7 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,12 +31,15 @@ public class NoticeListAdapter
 
     private final static String TAG = "NoticeListAdapter";
     private NoticeSource dataSource;
+    private final Fragment fragment;
     private OnItemClickListener itemClickListener;
+    private int menuPosition;
 
     // Передаём в конструктор источник данных
     // В нашем случае это массив, но может быть и запрос к БД
-    public NoticeListAdapter(NoticeSource dataSource) {
+    public NoticeListAdapter(NoticeSource dataSource, Fragment fragment) {
         this.dataSource = dataSource;
+        this.fragment = fragment;
     }
 
     // Создать новый элемент пользовательского интерфейса
@@ -67,6 +75,10 @@ public class NoticeListAdapter
         this.itemClickListener =  itemClickListener;
     }
 
+    public int getMenuPosition() {
+        return menuPosition;
+    }
+
     // Интерфейс для обработки нажатий, как в ListView
     public interface OnItemClickListener {
         void onItemClick(View view , int position);
@@ -88,6 +100,7 @@ public class NoticeListAdapter
             description = itemView.findViewById(R.id.description_detail);
             dateCreate = itemView.findViewById(R.id.date_detail);
 
+            registerContextMenu(itemView);
 
             cardView.setOnClickListener(v -> {
                 if (itemClickListener != null) {
@@ -95,6 +108,19 @@ public class NoticeListAdapter
                 }
             });
 
+        }
+
+        private void registerContextMenu(@NonNull View itemView) {
+            if (fragment != null){
+                itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        menuPosition = getLayoutPosition();
+                        return false;
+                    }
+                });
+                fragment.registerForContextMenu(itemView);
+            }
         }
 
         public void setData(NoticeData noticeData){
@@ -106,8 +132,10 @@ public class NoticeListAdapter
             dateCreate.setText(strDateCreate);
         }
 
-        public CardView getCardView() {
+        public CardView getNoticeView() {
             return cardView;
         }
+
+
     }
 }

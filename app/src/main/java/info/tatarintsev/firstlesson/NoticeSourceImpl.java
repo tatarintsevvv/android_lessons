@@ -41,5 +41,25 @@ public class NoticeSourceImpl  implements NoticeSource {
     public int size(){
         return dataSource.size();
     }
+
+    @Override
+    public void deleteNoticeData(int position) {
+        dataSource.remove(position);
+    }
+
+    @Override
+    public void updateNoticeData(int position, NoticeData noticeData) {
+        dataSource.set(position, noticeData);
+    }
+
+    @Override
+    public void addNoticeData(NoticeData noticeData) {
+        dataSource.add(noticeData);
+    }
+
+    @Override
+    public void clearNoticeData() {
+        dataSource.clear();
+    }
 }
 

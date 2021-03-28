@@ -1,7 +1,9 @@
 package info.tatarintsev.firstlesson;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -35,7 +37,7 @@ public class NoticeDetailFragment extends Fragment {
      * @param notice заметка
      * @return A new instance of fragment NoticeDetailFragment.
      */
-    // TODO: Rename and change types and number of parameters
+    // для редактирвоания
     public static NoticeDetailFragment newInstance(NoticeData notice) {
         NoticeDetailFragment fragment = new NoticeDetailFragment();
         Bundle args = new Bundle();
@@ -51,6 +53,7 @@ public class NoticeDetailFragment extends Fragment {
             mNotice = getArguments().getParcelable(FRAGMENT_TOKEN);
         }
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,15 +75,9 @@ public class NoticeDetailFragment extends Fragment {
         datePicker.init(calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH),
-                new DatePicker.OnDateChangedListener() {
-                    @Override
-                    public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        DatePicker dp = (DatePicker)view;
-                        Calendar calendarNew = Calendar.getInstance();
-                        calendarNew.set(year, monthOfYear, dayOfMonth);
-                        mNotice.setDateCreate(calendarNew.getTime());
-                    }
-                });
+                null);
         return view;
     }
+
+
 }
