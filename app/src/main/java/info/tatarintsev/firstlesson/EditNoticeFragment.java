@@ -1,7 +1,11 @@
 package info.tatarintsev.firstlesson;
 
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -14,10 +18,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import info.tatarintsev.firstlesson.observe.Publisher;
 
@@ -30,6 +36,7 @@ public class EditNoticeFragment extends Fragment {
     private TextInputEditText title;
     private TextInputEditText description;
     private DatePicker datePicker;
+    private MaterialButton saveButton;
 
     // при добавлении заметки
     public static EditNoticeFragment newInstance() {
@@ -110,9 +117,18 @@ public class EditNoticeFragment extends Fragment {
     }
 
     private void initView(View view) {
+        Fragment currentActivity = this;
         title = view.findViewById(R.id.title_edit);
         description = view.findViewById(R.id.description_edit);
         datePicker = view.findViewById(R.id.date_edit);
+        saveButton = view.findViewById(R.id.edit_save);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NoticeData noticeData = collectNoticeData();
+                publisher.notifySingle(noticeData);
+            }
+        });
     }
 
     private void populateView(){
@@ -130,4 +146,5 @@ public class EditNoticeFragment extends Fragment {
                 calendar.get(Calendar.DAY_OF_MONTH),
                 null);
     }
+
 }

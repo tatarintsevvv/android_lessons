@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         navigation = new Navigation(getSupportFragmentManager());
         initView();
 
-        getNavigation().addFragment(NoticeListFragment.newInstance(), false);
+        getNavigation().addFragment(NoticeListFragment.newInstance(), true);
 
 
     }

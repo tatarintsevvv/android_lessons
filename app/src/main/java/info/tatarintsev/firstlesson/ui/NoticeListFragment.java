@@ -183,11 +183,14 @@ public class NoticeListFragment extends Fragment {
         int position = adapter.getMenuPosition();
         switch(item.getItemId()) {
             case R.id.action_update:
+                /*
                 data.updateNoticeData(position,
                         new NoticeData(data.getNoticeData(position).getTitle(),
                                 data.getNoticeData(position).getDescription(),
                                 data.getNoticeData(position).getDateCreate()));
                 adapter.notifyItemChanged(position);
+
+                 */
                 navigation.addFragment(EditNoticeFragment.newInstance(data.getNoticeData(position)), true);
                 publisher.subscribe(new Observer() {
                     @Override
