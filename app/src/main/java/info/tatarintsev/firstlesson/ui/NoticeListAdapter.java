@@ -132,7 +132,7 @@ public class NoticeListAdapter
             dateCreate.setText(strDateCreate);
         }
 
-        public CardView getCardView() {
+        public CardView getNoticeView() {
             return cardView;
         }
 

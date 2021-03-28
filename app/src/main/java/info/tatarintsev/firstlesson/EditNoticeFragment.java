@@ -110,9 +110,9 @@ public class EditNoticeFragment extends Fragment {
     }
 
     private void initView(View view) {
-        title = view.findViewById(R.id.title_detail);
-        description = view.findViewById(R.id.description_detail);
-        datePicker = view.findViewById(R.id.date_detail);
+        title = view.findViewById(R.id.title_edit);
+        description = view.findViewById(R.id.description_edit);
+        datePicker = view.findViewById(R.id.date_edit);
     }
 
     private void populateView(){

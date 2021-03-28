@@ -116,8 +116,8 @@ public class NoticeListFragment extends Fragment {
                 navigation.addFragment(EditNoticeFragment.newInstance(), true);
                 publisher.subscribe(new Observer() {
                     @Override
-                    public void updateNoticeData(NoticeData cardData) {
-                        data.addNoticeData(cardData);
+                    public void updateNoticeData(NoticeData noticeData) {
+                        data.addNoticeData(noticeData);
                         adapter.notifyItemInserted(data.size() - 1);
                         // это сигнал, чтобы вызванный метод onCreateView
                         // перепрыгнул на конец списка
@@ -184,7 +184,7 @@ public class NoticeListFragment extends Fragment {
         switch(item.getItemId()) {
             case R.id.action_update:
                 data.updateNoticeData(position,
-                        new NoticeData("Кадр " + position,
+                        new NoticeData(data.getNoticeData(position).getTitle(),
                                 data.getNoticeData(position).getDescription(),
                                 data.getNoticeData(position).getDateCreate()));
                 adapter.notifyItemChanged(position);
