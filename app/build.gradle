@@ -7,6 +7,21 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
+    File f = new File('../sign.gradle')
+    if(f.exists()) {
+
+        apply from: "../sign.gradle"
+        signingConfigs {
+            config {
+                storeFile file(project.ext.forFirstLesson.storeFile)
+                storePassword project.ext.forFirstLesson.storePassword
+                keyAlias project.ext.forFirstLesson.keyAlias
+                keyPassword project.ext.forFirstLesson.keyPassword
+            }
+        }
+
+    }
+
     defaultConfig {
         applicationId "info.tatarintsev.firstlesson"
         minSdkVersion 21
@@ -45,6 +60,4 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
 
-plugins {
-    id 'com.google.gms.google-services'
-}
+apply plugin: 'com.google.gms.google-services'
