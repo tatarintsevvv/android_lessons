@@ -1,10 +1,13 @@
-package info.tatarintsev.firstlesson;
+package info.tatarintsev.firstlesson.data;
 
 import android.content.res.Resources;
 
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+
+import info.tatarintsev.firstlesson.NoticeData;
+import info.tatarintsev.firstlesson.R;
 
 public class NoticeSourceImpl  implements NoticeSource {
     private List<NoticeData> dataSource;
@@ -15,7 +18,7 @@ public class NoticeSourceImpl  implements NoticeSource {
         this.resources = resources;
     }
 
-    public NoticeSourceImpl init(){
+    public NoticeSourceImpl init(NoticeSourceResponse noticeSourceResponse){
         // строки заголовков из ресурсов
         String[] titles = resources.getStringArray(R.array.title);
         // строки описаний из ресурсов
@@ -30,6 +33,10 @@ public class NoticeSourceImpl  implements NoticeSource {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+        }
+
+        if(noticeSourceResponse != null) {
+            noticeSourceResponse.initialized(this);
         }
         return this;
     }

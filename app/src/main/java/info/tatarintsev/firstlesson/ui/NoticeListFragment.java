@@ -1,14 +1,11 @@
 package info.tatarintsev.firstlesson.ui;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,22 +17,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 import info.tatarintsev.firstlesson.EditNoticeFragment;
 import info.tatarintsev.firstlesson.MainActivity;
 import info.tatarintsev.firstlesson.Navigation;
 import info.tatarintsev.firstlesson.NoticeData;
-import info.tatarintsev.firstlesson.NoticeDetailFragment;
-import info.tatarintsev.firstlesson.NoticeSource;
-import info.tatarintsev.firstlesson.NoticeSourceImpl;
+import info.tatarintsev.firstlesson.data.NoticeSource;
+import info.tatarintsev.firstlesson.data.NoticeSourceImpl;
 import info.tatarintsev.firstlesson.R;
 import info.tatarintsev.firstlesson.observe.Observer;
 import info.tatarintsev.firstlesson.observe.Publisher;
@@ -105,7 +96,7 @@ public class NoticeListFragment extends Fragment {
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.notices_menu, menu);
     }
 

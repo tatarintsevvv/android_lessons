@@ -8,9 +8,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class NoticeData implements Parcelable {
-    String m_title;
-    String m_description;
-    Date m_dateCreate;
+    private String m_id;
+    private String m_title;
+    private String m_description;
+    private Date m_dateCreate;
+
+    public String getId() {
+        return m_id;
+    }
+
+    public void setId(String id) {
+        this.m_id = id;
+    }
 
     public NoticeData(String title, String description, Date dateCreate) {
         this.m_title = title;

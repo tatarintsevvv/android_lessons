@@ -1,29 +1,20 @@
 package info.tatarintsev.firstlesson.ui;
 
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.sql.DataSource;
-
 import info.tatarintsev.firstlesson.NoticeData;
-import info.tatarintsev.firstlesson.NoticeSource;
+import info.tatarintsev.firstlesson.data.NoticeSource;
 import info.tatarintsev.firstlesson.R;
 
 public class NoticeListAdapter
