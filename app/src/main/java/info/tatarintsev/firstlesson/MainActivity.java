@@ -98,14 +98,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean navigateFragment(int id) {
+        final int actionSettings = R.id.action_settings;
+        final int actionMain = R.id.action_main;
+        final int actionFavourite = R.id.action_favorite;
         switch (id) {
-            case R.id.action_settings:
+            case actionSettings:
                 addBasicFragment(new SettingsFragment());
                 return true;
-            case R.id.action_main:
+            case actionMain:
                 addBasicFragment(new NoticeListFragment());
                 return true;
-            case R.id.action_favorite:
+            case actionFavourite:
                 addBasicFragment(new EditNoticeFragment());
                 return true;
         }
@@ -135,20 +138,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Обработка выбора пункта меню приложения (активити)
         int id = item.getItemId();
-/*
-        switch(id){
-            case R.id.action_settings:
-                addBasicFragment(new SettingsFragment());
-                return true;
-            case R.id.action_main:
-                addBasicFragment(new AddNoticeFragment());
-                return true;
-            case R.id.action_favorite:
-                addBasicFragment(new NoticeListFragment());
-                return true;
-        }
-
- */
         return super.onOptionsItemSelected(item);
     }
 
