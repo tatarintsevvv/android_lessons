@@ -3,7 +3,7 @@ package info.tatarintsev.firstlesson.observe;
 import java.util.ArrayList;
 import java.util.List;
 
-import info.tatarintsev.firstlesson.NoticeData;
+import info.tatarintsev.firstlesson.data.NoticeData;
 
 public class Publisher {
     private List<Observer> observers;   // Все обозреватели

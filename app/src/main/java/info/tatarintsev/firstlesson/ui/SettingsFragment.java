@@ -1,8 +1,10 @@
-package info.tatarintsev.firstlesson;
+package info.tatarintsev.firstlesson.ui;
 
 import android.os.Bundle;
 
 import androidx.preference.PreferenceFragmentCompat;
+
+import info.tatarintsev.firstlesson.R;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 

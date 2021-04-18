@@ -1,7 +1,5 @@
 package info.tatarintsev.firstlesson.data;
 
-import info.tatarintsev.firstlesson.NoticeData;
-
 public interface NoticeSource {
     NoticeSource init(NoticeSourceResponse noticeSourceResponse);
     NoticeData getNoticeData(int position);

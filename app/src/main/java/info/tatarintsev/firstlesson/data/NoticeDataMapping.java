@@ -5,8 +5,6 @@ import com.google.firebase.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
-import info.tatarintsev.firstlesson.NoticeData;
-
 public class NoticeDataMapping {
     public static class Fields {
         public final static String DATE = "date";

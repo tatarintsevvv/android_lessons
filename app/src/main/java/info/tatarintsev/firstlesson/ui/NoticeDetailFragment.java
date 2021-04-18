@@ -1,9 +1,7 @@
-package info.tatarintsev.firstlesson;
+package info.tatarintsev.firstlesson.ui;
 
-import android.content.Context;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -15,6 +13,9 @@ import android.widget.TextView;
 
 import java.util.Calendar;
 import java.util.Date;
+
+import info.tatarintsev.firstlesson.data.NoticeData;
+import info.tatarintsev.firstlesson.R;
 
 /**
  * A simple {@link Fragment} subclass.

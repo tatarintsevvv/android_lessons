@@ -18,12 +18,14 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import info.tatarintsev.firstlesson.data.NoticeData;
 import info.tatarintsev.firstlesson.observe.Publisher;
+import info.tatarintsev.firstlesson.ui.EditNoticeFragment;
 import info.tatarintsev.firstlesson.ui.NoticeListFragment;
+import info.tatarintsev.firstlesson.ui.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package info.tatarintsev.firstlesson;
+package info.tatarintsev.firstlesson.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -19,12 +19,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import org.jetbrains.annotations.NotNull;
-
-import info.tatarintsev.firstlesson.EditNoticeFragment;
 import info.tatarintsev.firstlesson.MainActivity;
 import info.tatarintsev.firstlesson.Navigation;
-import info.tatarintsev.firstlesson.NoticeData;
+import info.tatarintsev.firstlesson.data.NoticeData;
 import info.tatarintsev.firstlesson.data.NoticeSource;
 import info.tatarintsev.firstlesson.data.NoticeSourceImpl;
 import info.tatarintsev.firstlesson.R;
@@ -102,8 +99,10 @@ public class NoticeListFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        final int actionAdd = R.id.action_add;
+        final int actionClear = R.id.action_clear;
         switch (item.getItemId()){
-            case R.id.action_add:
+            case actionAdd:
                 navigation.addFragment(EditNoticeFragment.newInstance(), true);
                 publisher.subscribe(new Observer() {
                     @Override
@@ -116,7 +115,7 @@ public class NoticeListFragment extends Fragment {
                     }
                 });
                 return true;
-            case R.id.action_clear:
+            case actionClear:
                 data.clearNoticeData();
                 adapter.notifyDataSetChanged();
                 return true;
@@ -171,9 +170,11 @@ public class NoticeListFragment extends Fragment {
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
+        final int actionUpdate = R.id.action_update;
+        final int actionDelete = R.id.action_delete;
         int position = adapter.getMenuPosition();
         switch(item.getItemId()) {
-            case R.id.action_update:
+            case actionUpdate:
                 /*
                 data.updateNoticeData(position,
                         new NoticeData(data.getNoticeData(position).getTitle(),
@@ -191,7 +192,7 @@ public class NoticeListFragment extends Fragment {
                     }
                 });
                 return true;
-            case R.id.action_delete:
+            case actionDelete:
                 data.deleteNoticeData(position);
                 adapter.notifyItemRemoved(position);
                 return true;

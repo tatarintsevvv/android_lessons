@@ -19,11 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import info.tatarintsev.firstlesson.NoticeData;
-
 public class NoticeSourceFirebaseImpl implements NoticeSource {
     private static final String NOTICE_COLLECTION = "notices";
-    private static final String TAG = "[NoticeSourceFirebaseImpl]";
+    private static final String TAG = "NoticeSrcFirebaseImpl";
 
     // База данных Firestore
     private FirebaseFirestore store = FirebaseFirestore.getInstance();

@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import info.tatarintsev.firstlesson.NoticeData;
+import info.tatarintsev.firstlesson.data.NoticeData;
 import info.tatarintsev.firstlesson.data.NoticeSource;
 import info.tatarintsev.firstlesson.R;
 

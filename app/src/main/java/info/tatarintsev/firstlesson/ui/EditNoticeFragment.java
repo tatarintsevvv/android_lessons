@@ -1,16 +1,9 @@
-package info.tatarintsev.firstlesson;
+package info.tatarintsev.firstlesson.ui;
 
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
-
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -23,8 +16,10 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
+import info.tatarintsev.firstlesson.MainActivity;
+import info.tatarintsev.firstlesson.data.NoticeData;
+import info.tatarintsev.firstlesson.R;
 import info.tatarintsev.firstlesson.observe.Publisher;
 
 public class EditNoticeFragment extends Fragment {
@@ -105,6 +100,18 @@ public class EditNoticeFragment extends Fragment {
         String title = this.title.getText().toString();
         String description = this.description.getText().toString();
         Date date = getDateFromDatePicker();
+/*
+        if(noticeData != null) {
+            NoticeData answer;
+            answer = new NoticeData(title, description, date);
+            answer.setId(noticeData.getId());
+            return answer;
+
+        } else {
+
+        }
+
+ */
         return new NoticeData(title, description,  date);
     }
 
